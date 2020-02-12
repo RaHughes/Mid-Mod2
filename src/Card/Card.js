@@ -1,14 +1,14 @@
 import React from 'react';
 import './Card.css';
 
-const Card = ({date, name, number, time}) => {
+const Card = ({date, name, number, time, deleteData, id}) => {
   return (
     <article className='card'>
-      <p>{name}</p>
+      <h2>{name}</h2>
       <p>{date}</p>
-      <p>{time}</p>
+      <p>{time} PM</p>
       <p>Number of Guests:{number}</p>
-      <button>Cancel</button>
+      <button className='submit' onClick={() => deleteData(id)}>Cancel</button>
     </article>
   )
 }
