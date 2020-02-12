@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import './App.css';
+import { CardContainer } from '../CardContainer/CardContainer';
 
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
-      data:[]
+      cards:[]
     }
   }
 
 componentDidMount = () => {
   fetch('http://localhost:3001/api/v1/reservations')
   .then(res => res.json())
-  .then(data => this.setState({ data: data }))
+  .then(data => this.setState({ cards: data }))
 }
 
   render() {
@@ -24,7 +25,7 @@ componentDidMount = () => {
 
         </div>
         <div className='resy-container'>
-        
+        <CardContainer cards={this.state.cards}/>
         </div>
       </div>
     )
