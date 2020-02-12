@@ -12,6 +12,19 @@ class App extends Component {
     }
   }
 
+  postData = obj => {
+    const post = {
+      method: 'POST',
+      body: JSON.stringify(obj),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    fetch('http://localhost:3001/api/v1/reservations', post)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+  }
+
 componentDidMount = () => {
   fetch('http://localhost:3001/api/v1/reservations')
   .then(res => res.json())
@@ -19,7 +32,9 @@ componentDidMount = () => {
 }
 
 sumbitReservation = res => {
-this.setState({ cards: [...this.state.cards, { date: res.date, id: Date.now(), name: res.name, number: res.number, time: res.time }] })
+  let reservation = { id: Date.now(), name: res.name, date: res.date, time: res.time, number: parseInt(res.number) }
+  this.postData(reservation)
+  this.setState({ cards: [...this.state.cards, reservation] })
 }
 
   render() {
