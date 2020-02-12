@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 import './App.css';
 
+
 class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      data:[]
+    }
+  }
+
+componentDidMount = () => {
+  fetch('http://localhost:3001/api/v1/reservations')
+  .then(res => res.json())
+  .then(data => this.setState({ data: data }))
+}
+
   render() {
     return (
       <div className="App">
@@ -10,7 +24,7 @@ class App extends Component {
 
         </div>
         <div className='resy-container'>
-          
+        
         </div>
       </div>
     )
